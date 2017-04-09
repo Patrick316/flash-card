@@ -7,9 +7,9 @@ function BasicCard(front,back) {
     correctAnswer = this.back;
     inquirer.prompt([
         {
-          name: "QuestionRespons",
+          name: "QuestionResponse",
           message: this.front,
-        default: 'Please Capitalize their names'
+        default: 'Please capitalize their names'
         }
       ]).then(function(answers) {
         continueGame(answers.QuestionResponse, correctAnswer);
@@ -17,27 +17,31 @@ function BasicCard(front,back) {
   }
 }
 
-QuestionOne = new BasicCard("Who was the first president of the United States?", "George Washington");
-QuestionTwo = new BasicCard("Who had the largest signature on the Declaration of Independence?", "John Hancock");
-QuestionThree = new BasicCard("Who invented the bifocals?", "Benjamin Franklin");
+questionOne = new BasicCard("Who was the first president of the United States?", "George Washington");
+questionTwo = new BasicCard("Who had the largest signature on the Declaration of Independence?", "John Hancock");
+questionThree = new BasicCard("Who invented the bifocals?", "Benjamin Franklin");
+
+var correct = 0;
 
 function continueGame(answer, n){
   if(n === "George Washington"){
     if(answer !== "George Washington"){
       console.log("you are wrong!");
-      QuestionTwo.runGame();
+      questionTwo.runGame();
     }else{
       console.log("You are right!!");
-      QuestionTwo.runGame();
+      correct ++;
+      questionTwo.runGame();
     }
 
   }else if(n === "John Hancock"){
     if(answer !== "John Hancock"){
       console.log("you are wrong!");
-      QuestionThree.runGame();
+      questionThree.runGame();
     }else{
         console.log("You are right!!");
-        QuestionThree.runGame();
+        correct ++;
+        questionThree.runGame();
     }
 
   }else if(n === "Benjamin Franklin"){
@@ -46,6 +50,7 @@ function continueGame(answer, n){
       gameComplete();
     }else{
       console.log("You are right!!");
+      correct ++;
       gameComplete();
     }
   }
@@ -54,9 +59,10 @@ function continueGame(answer, n){
 
 function gameComplete(){
   console.log("You've answered all the questions!!")
+  console.log("You got " + correct + " out of 3 correct.")
 
 }
 
-exports.GameInit = function(){
-  QuestionOne.runGame();
+exports.gameInit = function(){
+  questionOne.runGame();
 }
