@@ -1,5 +1,4 @@
 var basic = require('./basic.js');
-var cloze = require('./cloze.js');
 var input = process.argv[2];
 
 if(!input){
@@ -7,5 +6,5 @@ if(!input){
 }else if(input === 'basic'){
   basic.gameInit();
 }else if(input === 'cloze'){
-  cloze.gameInit();
+  console.log("we will get to cloze js very soon! ")
 }
